@@ -52,7 +52,8 @@ public class MyClassLoader extends ClassLoader {
 
         // 3. 调用方法，定义一个类
         byte[] bytes = outputStream.toByteArray();
-        return defineClass("Hello", bytes, 0, bytes.length);
+        String className = name.substring(0, name.indexOf("."));
+        return defineClass(className, bytes, 0, bytes.length);
     }
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException,
