@@ -11,7 +11,18 @@ import java.lang.reflect.InvocationTargetException;
 public class MyClassLoader extends ClassLoader {
 
     /**
+     * 寻找文件的根路径
+     */
+    private final String rootPath;
+
+    public MyClassLoader(String rootPath) {
+        super();
+        this.rootPath = rootPath;
+    }
+
+    /**
      * 重写 findClass 方法
+     *
      * @param name
      * @return
      * @throws ClassNotFoundException
@@ -20,7 +31,7 @@ public class MyClassLoader extends ClassLoader {
     protected Class<?> findClass(String name) throws ClassNotFoundException {
 
         // 1. 找到文件，转换为字节流
-        File file = new File(name);
+        File file = new File(rootPath + File.separator + name);
         FileInputStream inputStream;
         try {
             inputStream = new FileInputStream(file);
@@ -46,8 +57,8 @@ public class MyClassLoader extends ClassLoader {
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException,
             InstantiationException, NoSuchMethodException, InvocationTargetException {
-        MyClassLoader myClassLoader = new MyClassLoader();
-        Class<?> hello = myClassLoader.loadClass("Week_01/Hello.xlass");
+        MyClassLoader myClassLoader = new MyClassLoader("Week_01");
+        Class<?> hello = myClassLoader.loadClass("Hello.xlass");
         Object instance = hello.newInstance();
         hello.getMethod("hello").invoke(instance);
     }
