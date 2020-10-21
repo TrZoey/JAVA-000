@@ -8,10 +8,7 @@
 ### 02. 
 
 题目：画一张图，展示 Xmx、Xms、Xmn、Meta、DirectMemory、Xss 这些内存参数的关系。
-解答：
-
-
-
+解答：[Java内存模型及相关参数](com/prik/work01/Java内存模型及相关参数.jpg)
 
 选做：
 1. 自己写一个简单的 Hello.java，里面需要涉及基本类型，四则运行，if 和 for，然后自己分析一下对应的字节码，有问题群里讨论。
